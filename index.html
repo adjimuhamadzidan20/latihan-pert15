@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Toko Semen</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+			font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+			color: white;
+		}
+
+		body {
+			background: url(interlaced.png);
+		}
+
+		.wrap {
+			background-color: dodgerblue;
+			width: 40%;
+			margin: 15px auto;
+			padding: 35px 0;
+			border-radius: 12px;
+
+		}
+
+		.wrap h1 {
+			text-align: center;
+			margin-bottom: 30px;
+		}
+
+		form {
+			margin: auto;
+			display: flex;
+			flex-direction: column;
+			width: 175px;
+			text-transform: capitalize;
+			font-size: 15px;
+		}
+
+		form label {
+			margin-bottom: 3px;
+		}
+
+		form input {
+			margin-bottom: 12px; 
+			border: none;
+			border-radius: 5px;
+			padding: 4px;
+			font-size: 12px;
+		}
+
+		form button {
+			margin-top: 14px;
+			border: none;
+			background-color: blue;
+			padding: 5px 0;
+			border-radius: 10px;
+		}
+
+		form button:hover {
+			background-color: #2DB52D;
+			cursor: pointer;
+		}
+
+		form a button {
+			width: 175px;
+		}
+
+		.ket {
+			background-color: dodgerblue;
+			width: 40%;
+			margin: auto;
+			display: none;
+			padding: 20px;
+			font-size: 15px;
+			border-radius: 12px;
+		}
+
+	</style>
+</head>
+<body>
+	<div class="wrap">
+		<h1>Toko Semen</h1>
+		<form action="">
+			<label for="merk">merk semen</label>
+			<input type="text" name="merk" id="merk" placeholder="Merk">
+			<label for="harga">harga per sak</label>
+			<input type="text" name="harga" id="harga" placeholder="Harga">
+			<label for="jumlah">jumlah pembelian</label>
+			<input type="text" name="jumlah" id="jumlah" placeholder="Jumlah">
+			<button type="button" onclick="semen()">Check</button>
+			<a href="index.html"><button type="button">Reset</button></a>
+			
+		</form>
+	</div>
+
+	<div class="ket"></div>
+
+	<script type="text/javascript">
+		function semen() {
+			let merk = document.getElementById('merk').value;
+			let harga = parseInt(document.getElementById('harga').value);
+			let jumlah = parseInt(document.getElementById('jumlah').value);
+			let pengiriman = 5000;
+			let diskon = 5 / 100 ;
+			let total = harga * jumlah;
+			let potongan = diskon * total;
+			
+			if(jumlah < 10) {
+				let ket = document.getElementsByClassName('ket')[0];
+				ket.innerHTML = 
+				`Merk Semen 		: ${merk}<br> 
+				Jumlah Pembelian 	: ${jumlah}<br>
+				Jumlah Total 		: Rp.${total} (biaya pengiriman ditanggung pembeli sebesar Rp.5.000)
+				<br><br>
+				Total biaya yang harus dibayar :<br>
+				Rp.${total + pengiriman}
+				<br><br>
+				Terimakasih..`;
+
+				ket.style.display = 'block';
+			}
+
+			else {
+				let ket = document.getElementsByClassName('ket')[0];
+				ket.innerHTML = 
+				`Merk Semen 		: ${merk} 
+				Jumlah Pembelian 	: ${jumlah}<br>
+				Jumlah Total 		: Rp.${total} (pembeli mendapat diskon 5% dari total harga)
+				<br><br>
+				diskon 5% (Rp.${potongan})<br>
+				Total biaya yang harus dibayar :<br>
+				Rp.${total - potongan}
+				<br><br>
+				Terimakasih..`;
+
+				ket.style.display = 'block';
+			}
+		}
+		
+	</script>
+</body>
+</html>
